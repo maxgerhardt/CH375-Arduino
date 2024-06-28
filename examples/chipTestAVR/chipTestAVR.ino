@@ -1,11 +1,12 @@
 #include <SoftwareSerial.h>
 #include "CH375.h"
 
+// Make sure CH375 is in "RS232" mode via the jumpers on the board.
 #define CH375_RX 2
 #define CH375_TX 3
 #define CH375_INT 4
-SoftwareSerial swSer(2, 3); // RX, TX
-CH375 ch375(swSer, 4);
+SoftwareSerial swSer(CH375_RX, CH375_TX); // RX, TX
+CH375 ch375(swSer, CH375_INT);
 
 void set_baud_rate_cb() {
     swSer.begin(115200);
